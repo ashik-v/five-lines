@@ -92,7 +92,7 @@ function moveVertical(dy: number) {
   }
 }
 
-function update() {
+function handleInputs() {
   while (inputs.length > 0) {
     let current = inputs.pop();
     if (current === Input.LEFT) moveHorizontal(-1);
@@ -100,18 +100,20 @@ function update() {
     else if (current === Input.UP) moveVertical(-1);
     else if (current === Input.DOWN) moveVertical(1);
   }
+}
 
+function updateMap() {
   for (let y = map.length - 1; y >= 0; y--) {
     for (let x = 0; x < map[y].length; x++) {
       if (
-        (map[y][x] === Tile.STONE || map[y][x] === Tile.FALLING_STONE) &&
-        map[y + 1][x] === Tile.AIR
+          (map[y][x] === Tile.STONE || map[y][x] === Tile.FALLING_STONE) &&
+          map[y + 1][x] === Tile.AIR
       ) {
         map[y + 1][x] = Tile.FALLING_STONE;
         map[y][x] = Tile.AIR;
       } else if (
-        (map[y][x] === Tile.BOX || map[y][x] === Tile.FALLING_BOX) &&
-        map[y + 1][x] === Tile.AIR
+          (map[y][x] === Tile.BOX || map[y][x] === Tile.FALLING_BOX) &&
+          map[y + 1][x] === Tile.AIR
       ) {
         map[y + 1][x] = Tile.FALLING_BOX;
         map[y][x] = Tile.AIR;
@@ -122,6 +124,11 @@ function update() {
       }
     }
   }
+}
+
+function update() {
+  handleInputs();
+  updateMap();
 }
 
 function drawMap(g: CanvasRenderingContext2D) {
@@ -149,11 +156,16 @@ function drawPlayer(g: CanvasRenderingContext2D) {
   g.fillRect(playerx * TILE_SIZE, playery * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 }
 
-function draw() {
+function createGraphics() {
   let canvas = document.getElementById("GameCanvas") as HTMLCanvasElement;
   let g = canvas.getContext("2d");
 
   g.clearRect(0, 0, canvas.width, canvas.height);
+  return g;
+}
+
+function draw() {
+  let g = createGraphics();
 
   drawMap(g);
   drawPlayer(g);
