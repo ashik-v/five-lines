@@ -37,7 +37,7 @@ class Right implements Input {
   isLeft() { return false; }
   isUp() { return false; }
   isDown() { return false; }
-  handleInput() {
+  handle() {
     moveHorizontal(1);
   }
 }
@@ -47,7 +47,7 @@ class Left implements Input {
   isLeft() { return true; }
   isUp() { return false; }
   isDown() { return false; }
-  handleInput() {
+  handle() {
     moveHorizontal(-1);
   }
 }
@@ -57,7 +57,7 @@ class Up implements Input {
   isLeft() { return false; }
   isUp() { return true; }
   isDown() { return false; }
-  handleInput() {
+  handle() {
     moveVertical(-1);
   }
 }
@@ -67,7 +67,7 @@ class Down implements Input {
   isLeft() { return false; }
   isUp() { return false; }
   isDown() { return true; }
-  handleInput() {
+  handle() {
     moveVertical(1);
   }
 }
