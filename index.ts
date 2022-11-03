@@ -140,14 +140,10 @@ function moveVertical(dy: number) {
   }
 }
 
-function handleInput(input: Input) {
-  input.handle();
-}
-
 function handleInputs() {
   while (inputs.length > 0) {
     let current = inputs.pop();
-    handleInput(current);
+    current.handle();
   }
 }
 
