@@ -324,13 +324,13 @@ interface Input {
 
 class Right implements Input {
   handle() {
-    moveHorizontal(1);
+    map[playery][playerx + 1].moveHorizontal(1)
   }
 }
 
 class Left implements Input {
   handle() {
-    moveHorizontal(-1);
+    map[playery][playerx + -1].moveHorizontal(-1)
   }
 }
 
@@ -418,10 +418,6 @@ function moveToTile(newx: number, newy: number) {
   map[newy][newx] = new Player();
   playerx = newx;
   playery = newy;
-}
-
-function moveHorizontal(dx: number) {
-  map[playery][playerx + dx].moveHorizontal(dx)
 }
 
 function moveVertical(dy: number) {
