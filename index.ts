@@ -359,13 +359,13 @@ class Left implements Input {
 
 class Up implements Input {
   handle() {
-    moveVertical(-1);
+    map[playery + -1][playerx].moveVertical(-1)
   }
 }
 
 class Down implements Input {
   handle() {
-    moveVertical(1);
+    map[playery + 1][playerx].moveVertical(1)
   }
 }
 
@@ -441,10 +441,6 @@ function moveToTile(newx: number, newy: number) {
   map[newy][newx] = new Player();
   playerx = newx;
   playery = newy;
-}
-
-function moveVertical(dy: number) {
-    map[playery + dy][playerx].moveVertical(dy)
 }
 
 function handleInputs() {
