@@ -129,14 +129,7 @@ function moveVertical(dy: number) {
 }
 
 function handleInput(current: Input) {
-  if (current.isLeft())
-    moveHorizontal(-1);
-  else if (current.isRight())
-    moveHorizontal(1);
-  else if (current.isUp())
-    moveVertical(-1);
-  else if (current.isDown())
-    moveVertical(1);
+  current.handle()
 }
 
 function handleInputs() {
