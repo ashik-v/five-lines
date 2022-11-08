@@ -450,14 +450,10 @@ function update() {
   updateMap();
 }
 
-function drawTile(g: CanvasRenderingContext2D, x: number, y: number ) {
-  map[y][x].draw(g, x, y);
-}
-
 function drawMap(g: CanvasRenderingContext2D) {
   for (let y = 0; y < map.length; y++) {
     for (let x = 0; x < map[y].length; x++) {
-      drawTile(g, x, y);
+      map[y][x].draw(g, x, y);
     }
   }
 }
@@ -506,4 +502,3 @@ window.addEventListener("keydown", e => {
   else if (e.key === RIGHT_KEY || e.key === "d") inputs.push(new Right());
   else if (e.key === DOWN_KEY || e.key === "s") inputs.push(new Down());
 });
-
