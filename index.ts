@@ -29,7 +29,8 @@ interface Tile2 {
   isLock2(): boolean,
   draw(g: CanvasRenderingContext2D, x: number, y: number): void,
   isEdible(): boolean,
-  isPushable(): boolean
+  isPushable(): boolean,
+  moveHorizontal(): void
 }
 
 class Air implements Tile2 {
@@ -48,6 +49,8 @@ class Air implements Tile2 {
   draw(g: CanvasRenderingContext2D, x: number, y: number) { }
   isEdible() { return true }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 class Player implements Tile2 {
@@ -66,6 +69,8 @@ class Player implements Tile2 {
   draw(g: CanvasRenderingContext2D, x: number, y: number) { }
   isEdible() { return false }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 class Flux implements Tile2 {
@@ -87,6 +92,8 @@ class Flux implements Tile2 {
   }
   isEdible() { return true }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 class Unbreakable implements Tile2 {
@@ -108,6 +115,8 @@ class Unbreakable implements Tile2 {
   }
   isEdible() { return false }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 class Box implements Tile2 {
@@ -129,6 +138,8 @@ class Box implements Tile2 {
   }
   isEdible() { return false }
   isPushable() { return true }
+  moveHorizontal() {
+  }
 }
 
 class FallingBox implements Tile2 {
@@ -150,6 +161,8 @@ class FallingBox implements Tile2 {
   }
   isEdible() { return false }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 class Stone implements Tile2 {
@@ -171,6 +184,8 @@ class Stone implements Tile2 {
   }
   isEdible() { return false }
   isPushable() { return true }
+  moveHorizontal() {
+  }
 }
 
 class FallingStone implements Tile2 {
@@ -192,6 +207,8 @@ class FallingStone implements Tile2 {
   }
   isEdible() { return false }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 class Key1 implements Tile2 {
@@ -213,6 +230,8 @@ class Key1 implements Tile2 {
   }
   isEdible() { return false }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 class Lock1 implements Tile2 {
@@ -234,6 +253,8 @@ class Lock1 implements Tile2 {
   }
   isEdible() { return false }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 class Key2 implements Tile2 {
@@ -255,6 +276,8 @@ class Key2 implements Tile2 {
   }
   isEdible() { return false }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 class Lock2 implements Tile2 {
@@ -276,6 +299,8 @@ class Lock2 implements Tile2 {
   }
   isEdible() { return false }
   isPushable() { return false }
+  moveHorizontal() {
+  }
 }
 
 enum RawInput {
