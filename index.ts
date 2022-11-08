@@ -18,6 +18,41 @@ enum Input {
   UP, DOWN, LEFT, RIGHT
 }
 
+interface Input2 {
+  isUp(): boolean,
+  isDown(): boolean,
+  isLeft(): boolean,
+  isRight(): boolean
+}
+
+class Up implements Input2 {
+  isUp() { return true }
+  isDown() { return false }
+  isLeft() { return false }
+  isRight() { return false }
+}
+
+class Down implements Input2 {
+  isUp() { return false }
+  isDown() { return true }
+  isLeft() { return false }
+  isRight() { return false }
+}
+
+class Left implements Input2 {
+  isUp() { return false }
+  isDown() { return false }
+  isLeft() { return true }
+  isRight() { return false }
+}
+
+class Right implements Input2 {
+  isUp() { return false }
+  isDown() { return false }
+  isLeft() { return false }
+  isRight() { return true }
+}
+
 let playerx = 1;
 let playery = 1;
 let map: Tile[][] = [
@@ -80,7 +115,7 @@ function moveVertical(dy: number) {
   }
 }
 
-function handleInput(current: Input | Input.UP | Input.DOWN | Input.RIGHT) {
+function handleInput(current: Input) {
   if (current === Input.LEFT)
     moveHorizontal(-1);
   else if (current === Input.RIGHT)
