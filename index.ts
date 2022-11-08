@@ -22,7 +22,8 @@ interface Input {
   isUp(): boolean,
   isDown(): boolean,
   isLeft(): boolean,
-  isRight(): boolean
+  isRight(): boolean,
+  handle(): void
 }
 
 class Up implements Input {
@@ -30,6 +31,9 @@ class Up implements Input {
   isDown() { return false }
   isLeft() { return false }
   isRight() { return false }
+  handle() {
+    moveVertical(-1);
+  }
 }
 
 class Down implements Input {
@@ -37,6 +41,9 @@ class Down implements Input {
   isDown() { return true }
   isLeft() { return false }
   isRight() { return false }
+  handle() {
+    moveVertical(1);
+  }
 }
 
 class Left implements Input {
@@ -44,6 +51,9 @@ class Left implements Input {
   isDown() { return false }
   isLeft() { return true }
   isRight() { return false }
+  handle() {
+    moveHorizontal(-1);
+  }
 }
 
 class Right implements Input {
@@ -51,6 +61,9 @@ class Right implements Input {
   isDown() { return false }
   isLeft() { return false }
   isRight() { return true }
+  handle() {
+    moveHorizontal(1);
+  }
 }
 
 let playerx = 1;
