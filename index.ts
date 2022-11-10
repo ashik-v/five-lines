@@ -19,9 +19,7 @@ interface Tile2 {
   isPlayer(): boolean,
   isFlux(): boolean,
   isUnbreakable(): boolean,
-  isBox(): boolean,
   isFallingBox(): boolean,
-  isStone(): boolean,
   isFallingStone(): boolean,
   isKey1(): boolean,
   isLock1(): boolean,
@@ -41,9 +39,7 @@ class Air implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
@@ -67,9 +63,7 @@ class Player implements Tile2 {
   isPlayer() { return true }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
@@ -91,9 +85,7 @@ class Flux implements Tile2 {
   isPlayer() { return false }
   isFlux() { return true }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
@@ -120,9 +112,7 @@ class Unbreakable implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return true }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
@@ -147,9 +137,7 @@ class Box implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return true }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
@@ -179,9 +167,7 @@ class FallingBox implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return true }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
@@ -206,9 +192,7 @@ class Stone implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return true }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
@@ -238,9 +222,7 @@ class FallingStone implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return true }
   isKey1() { return false }
   isLock1() { return false }
@@ -265,9 +247,7 @@ class Key1 implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return true }
   isLock1() { return false }
@@ -296,9 +276,7 @@ class Lock1 implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return true }
@@ -323,9 +301,7 @@ class Key2 implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
@@ -354,9 +330,7 @@ class Lock2 implements Tile2 {
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isBox() { return false }
   isFallingBox() { return false }
-  isStone() { return false }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
