@@ -188,12 +188,16 @@ class FallingBox implements Tile2 {
 }
 
 class Stone implements Tile2 {
+  private falling: boolean
+  constructor() {
+    this.falling = false
+  }
   isAir() { return false }
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
   isFallingBox() { return false }
-  isFallingStone() { return false }
+  isFallingStone() { return this.falling }
   isKey1() { return false }
   isLock1() { return false }
   isKey2() { return false }
@@ -223,12 +227,16 @@ class Stone implements Tile2 {
 }
 
 class FallingStone implements Tile2 {
+  private falling: boolean
+  constructor() {
+    this.falling = true
+  }
   isAir() { return false }
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
   isFallingBox() { return false }
-  isFallingStone() { return true }
+  isFallingStone() { return this.falling }
   isKey1() { return false }
   isLock1() { return false }
   isKey2() { return false }
