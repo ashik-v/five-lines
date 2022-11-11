@@ -226,44 +226,6 @@ class Stone implements Tile2 {
   isBoxy() { return false }
 }
 
-class FallingStone implements Tile2 {
-  private falling: boolean
-  constructor(falling: boolean) {
-    this.falling = falling
-  }
-  isAir() { return false }
-  isPlayer() { return false }
-  isFlux() { return false }
-  isUnbreakable() { return false }
-  isFallingBox() { return false }
-  isFallingStone() { return this.falling }
-  isKey1() { return false }
-  isLock1() { return false }
-  isKey2() { return false }
-  isLock2() { return false }
-  draw(g: CanvasRenderingContext2D, x: number, y: number) {
-    g.fillStyle = "#0000cc";
-    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  isEdible() { return false }
-  isPushable() { return false }
-  moveHorizontal(dx: number) {
-    if (this.isFallingStone() == true) {
-
-    } else if (this.isFallingStone() == false) {
-      if (map[playery][playerx + dx + dx].isAir()
-          && !map[playery + 1][playerx + dx].isAir()) {
-        map[playery][playerx + dx + dx] = map[playery][playerx + dx];
-        moveToTile(playerx + dx, playery);
-      }
-    }
-  }
-  moveVertical(dy: number) {
-  }
-  isStony() { return true }
-  isBoxy() { return false }
-}
-
 class Key1 implements Tile2 {
   isAir() { return false }
   isPlayer() { return false }
@@ -448,7 +410,7 @@ function transformTile(tile: RawTile) {
     case RawTile.UNBREAKABLE: return new Unbreakable();
     case RawTile.PLAYER: return new Player();
     case RawTile.STONE: return new Stone(false);
-    case RawTile.FALLING_STONE: return new FallingStone(true);
+    case RawTile.FALLING_STONE: return new Stone(true);
     case RawTile.BOX: return new Box();
     case RawTile.FALLING_BOX: return new FallingBox();
     case RawTile.KEY1: return new Key1();
@@ -512,7 +474,7 @@ function handleInputs() {
 function updateTile(x: number, y: number) {
   if ((map[y][x].isStony())
       && map[y + 1][x].isAir()) {
-    map[y + 1][x] = new FallingStone(true);
+    map[y + 1][x] = new Stone(true);
     map[y][x] = new Air();
   } else if ((map[y][x].isBoxy())
       && map[y + 1][x].isAir()) {
