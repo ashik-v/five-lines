@@ -188,18 +188,29 @@ class FallingBox implements Tile2 {
 }
 
 interface FallingState {
-  isFalling(): boolean;
-  isResting(): boolean;
+  isFalling(): boolean,
+  isResting(): boolean,
+  moveHorizontal(dx: number): void
 }
 
 class Falling implements FallingState {
   isFalling() { return true }
   isResting() { return false }
+  moveHorizontal(dx: number) {
+
+  }
 }
 
 class Resting implements FallingState {
   isFalling() { return false }
   isResting() { return true }
+  moveHorizontal(dx: number) {
+    if (map[playery][playerx + dx + dx].isAir()
+        && !map[playery + 1][playerx + dx].isAir()) {
+      map[playery][playerx + dx + dx] = map[playery][playerx + dx];
+      moveToTile(playerx + dx, playery);
+    }
+  }
 }
 
 class Stone implements Tile2 {
@@ -222,16 +233,7 @@ class Stone implements Tile2 {
   isEdible() { return false }
   isPushable() { return true }
   moveHorizontal(dx: number) {
-    if(this.isFallingStone() == false) {
-      if (map[playery][playerx + dx + dx].isAir()
-          && !map[playery + 1][playerx + dx].isAir()) {
-        map[playery][playerx + dx + dx] = map[playery][playerx + dx];
-        moveToTile(playerx + dx, playery);
-      }
-    }
-    else if (this.isFallingStone() == true) {
-
-    }
+    this.falling.moveHorizontal(dx)
   }
   moveVertical(dy: number) {
   }
