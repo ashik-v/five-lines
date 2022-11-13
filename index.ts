@@ -135,8 +135,8 @@ class Unbreakable implements Tile2 {
 class Box implements Tile2 {
   private falling: boolean
 
-  constructor() {
-    this.falling = false
+  constructor(falling: boolean) {
+    this.falling = falling
   }
   isAir() { return false }
   isPlayer() { return false }
@@ -174,7 +174,7 @@ class Box implements Tile2 {
 class FallingBox implements Tile2 {
   private falling: boolean
 
-  constructor() {
+  constructor(falling: boolean) {
     this.falling = true
   }
   isAir() { return false }
