@@ -133,11 +133,16 @@ class Unbreakable implements Tile2 {
 }
 
 class Box implements Tile2 {
+  private falling: boolean
+
+  constructor() {
+    this.falling = false
+  }
   isAir() { return false }
   isPlayer() { return false }
   isFlux() { return false }
   isUnbreakable() { return false }
-  isFallingBox() { return false }
+  isFallingBox() { return this.falling }
   isFallingStone() { return false }
   isKey1() { return false }
   isLock1() { return false }
@@ -167,6 +172,11 @@ class Box implements Tile2 {
 }
 
 class FallingBox implements Tile2 {
+  private falling: boolean
+
+  constructor() {
+    this.falling = true 
+  }
   isAir() { return false }
   isPlayer() { return false }
   isFlux() { return false }
