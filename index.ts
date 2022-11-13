@@ -175,7 +175,7 @@ class FallingBox implements Tile2 {
   private falling: boolean
 
   constructor() {
-    this.falling = true 
+    this.falling = true
   }
   isAir() { return false }
   isPlayer() { return false }
@@ -446,8 +446,8 @@ function transformTile(tile: RawTile) {
     case RawTile.PLAYER: return new Player();
     case RawTile.STONE: return new Stone(new Resting());
     case RawTile.FALLING_STONE: return new Stone(new Falling());
-    case RawTile.BOX: return new Box();
-    case RawTile.FALLING_BOX: return new FallingBox();
+    case RawTile.BOX: return new Box(false);
+    case RawTile.FALLING_BOX: return new FallingBox(true);
     case RawTile.KEY1: return new Key1();
     case RawTile.LOCK1: return new Lock1();
     case RawTile.KEY2: return new Key2();
@@ -513,12 +513,12 @@ function updateTile(x: number, y: number) {
     map[y][x] = new Air();
   } else if ((map[y][x].isBoxy())
       && map[y + 1][x].isAir()) {
-    map[y + 1][x] = new FallingBox();
+    map[y + 1][x] = new FallingBox(true);
     map[y][x] = new Air();
   } else if (map[y][x].isFallingStone()) {
     map[y][x] = new Stone(new Resting());
   } else if (map[y][x].isFallingBox()) {
-    map[y][x] = new Box();
+    map[y][x] = new Box(false);
   }
 }
 
