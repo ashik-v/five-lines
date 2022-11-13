@@ -150,10 +150,14 @@ class Box implements Tile2 {
   isEdible() { return false }
   isPushable() { return true }
   moveHorizontal(dx: number) {
-    if (map[playery][playerx + dx + dx].isAir()
-    && !map[playery + 1][playerx + dx].isAir()) {
-      map[playery][playerx + dx + dx] = map[playery][playerx + dx];
-      moveToTile(playerx + dx, playery);
+    if(this.isFallingBox() === false) {
+      if (map[playery][playerx + dx + dx].isAir()
+          && !map[playery + 1][playerx + dx].isAir()) {
+        map[playery][playerx + dx + dx] = map[playery][playerx + dx];
+        moveToTile(playerx + dx, playery);
+      } else if (this.isFallingBox() === true) {
+
+      }
     }
   }
   moveVertical(dy: number) {
@@ -180,6 +184,15 @@ class FallingBox implements Tile2 {
   isEdible() { return false }
   isPushable() { return false }
   moveHorizontal(dx: number) {
+    if(this.isFallingBox() === true) {
+
+    } else if (this.isFallingBox() === false) {
+      if (map[playery][playerx + dx + dx].isAir()
+          && !map[playery + 1][playerx + dx].isAir()) {
+        map[playery][playerx + dx + dx] = map[playery][playerx + dx];
+        moveToTile(playerx + dx, playery);
+      }
+    }
   }
   moveVertical(dy: number) {
   }
