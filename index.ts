@@ -32,6 +32,8 @@ interface Tile2 {
   isBoxy(): boolean,
   moveHorizontal(dx: number): void
   moveVertical(dy: number): void
+  drop(): void
+  rest(): void
 }
 
 class Air implements Tile2 {
@@ -56,6 +58,8 @@ class Air implements Tile2 {
   }
   isStony() { return false }
   isBoxy() { return false }
+  drop() { }
+  rest() { }
 }
 
 class Player implements Tile2 {
@@ -78,6 +82,8 @@ class Player implements Tile2 {
   }
   isStony() { return false }
   isBoxy() { return false }
+  drop() { }
+  rest() { }
 }
 
 class Flux implements Tile2 {
@@ -105,6 +111,8 @@ class Flux implements Tile2 {
   }
   isStony() { return false }
   isBoxy() { return false }
+  drop() { }
+  rest() { }
 }
 
 class Unbreakable implements Tile2 {
@@ -130,6 +138,8 @@ class Unbreakable implements Tile2 {
   }
   isStony() { return false }
   isBoxy() { return false }
+  drop() { }
+  rest() { }
 }
 
 class Box implements Tile2 {
@@ -161,6 +171,8 @@ class Box implements Tile2 {
   }
   isStony() { return false }
   isBoxy() { return true }
+  drop() { this.falling = new Falling(); }
+  rest() { this.falling = new Resting(); }
 }
 
 interface FallingState {
@@ -212,6 +224,8 @@ class Stone implements Tile2 {
   }
   isStony() { return true }
   isBoxy() { return false }
+  drop() { this.falling = new Falling(); }
+  rest() { this.falling = new Resting(); }
 }
 
 class Key1 implements Tile2 {
@@ -241,6 +255,8 @@ class Key1 implements Tile2 {
   }
   isStony() { return false }
   isBoxy() { return false }
+  drop() { }
+  rest() { }
 }
 
 class Lock1 implements Tile2 {
@@ -266,6 +282,8 @@ class Lock1 implements Tile2 {
   }
   isStony() { return false }
   isBoxy() { return false }
+  drop() { }
+  rest() { }
 }
 
 class Key2 implements Tile2 {
@@ -295,6 +313,8 @@ class Key2 implements Tile2 {
   }
   isStony() { return false }
   isBoxy() { return false }
+  drop() { }
+  rest() { }
 }
 
 class Lock2 implements Tile2 {
@@ -320,6 +340,8 @@ class Lock2 implements Tile2 {
   }
   isStony() { return false }
   isBoxy() { return false }
+  drop() { }
+  rest() { }
 }
 
 enum RawInput {
@@ -468,10 +490,8 @@ function updateTile(x: number, y: number) {
       && map[y + 1][x].isAir()) {
     map[y + 1][x] = new Box(new Falling());
     map[y][x] = new Air();
-  } else if (map[y][x].isFallingStone()) {
-    map[y][x] = new Stone(new Resting());
-  } else if (map[y][x].isFallingBox()) {
-    map[y][x] = new Box(new Resting());
+  } else if (map[y][x].isFallingStone() || map[y][x].isFallingBox()) {
+    map[y][x].rest();
   }
 }
 
