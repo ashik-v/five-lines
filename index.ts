@@ -34,6 +34,7 @@ interface Tile2 {
   moveVertical(dy: number): void
   drop(): void
   rest(): void
+  isFalling(): boolean
 }
 
 class Air implements Tile2 {
@@ -60,6 +61,7 @@ class Air implements Tile2 {
   isBoxy() { return false }
   drop() { }
   rest() { }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 class Player implements Tile2 {
@@ -84,6 +86,7 @@ class Player implements Tile2 {
   isBoxy() { return false }
   drop() { }
   rest() { }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 class Flux implements Tile2 {
@@ -113,6 +116,7 @@ class Flux implements Tile2 {
   isBoxy() { return false }
   drop() { }
   rest() { }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 class Unbreakable implements Tile2 {
@@ -140,6 +144,7 @@ class Unbreakable implements Tile2 {
   isBoxy() { return false }
   drop() { }
   rest() { }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 class Box implements Tile2 {
@@ -173,6 +178,7 @@ class Box implements Tile2 {
   isBoxy() { return true }
   drop() { this.falling = new Falling(); }
   rest() { this.falling = new Resting(); }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 interface FallingState {
@@ -226,6 +232,7 @@ class Stone implements Tile2 {
   isBoxy() { return false }
   drop() { this.falling = new Falling(); }
   rest() { this.falling = new Resting(); }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 class Key1 implements Tile2 {
@@ -257,6 +264,7 @@ class Key1 implements Tile2 {
   isBoxy() { return false }
   drop() { }
   rest() { }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 class Lock1 implements Tile2 {
@@ -284,6 +292,7 @@ class Lock1 implements Tile2 {
   isBoxy() { return false }
   drop() { }
   rest() { }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 class Key2 implements Tile2 {
@@ -315,6 +324,7 @@ class Key2 implements Tile2 {
   isBoxy() { return false }
   drop() { }
   rest() { }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 class Lock2 implements Tile2 {
@@ -342,6 +352,7 @@ class Lock2 implements Tile2 {
   isBoxy() { return false }
   drop() { }
   rest() { }
+  isFalling() { return this.isFallingStone() || this.isFallingBox() }
 }
 
 enum RawInput {
