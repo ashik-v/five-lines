@@ -35,6 +35,7 @@ interface Tile2 {
   drop(): void
   rest(): void
   isFalling(): boolean
+  canFall(): boolean
 }
 
 class Air implements Tile2 {
@@ -62,6 +63,7 @@ class Air implements Tile2 {
   drop() { }
   rest() { }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 class Player implements Tile2 {
@@ -87,6 +89,7 @@ class Player implements Tile2 {
   drop() { }
   rest() { }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 class Flux implements Tile2 {
@@ -117,6 +120,7 @@ class Flux implements Tile2 {
   drop() { }
   rest() { }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 class Unbreakable implements Tile2 {
@@ -145,6 +149,7 @@ class Unbreakable implements Tile2 {
   drop() { }
   rest() { }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 class Box implements Tile2 {
@@ -179,6 +184,7 @@ class Box implements Tile2 {
   drop() { this.falling = new Falling(); }
   rest() { this.falling = new Resting(); }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 interface FallingState {
@@ -233,6 +239,7 @@ class Stone implements Tile2 {
   drop() { this.falling = new Falling(); }
   rest() { this.falling = new Resting(); }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 class Key1 implements Tile2 {
@@ -265,6 +272,7 @@ class Key1 implements Tile2 {
   drop() { }
   rest() { }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 class Lock1 implements Tile2 {
@@ -293,6 +301,7 @@ class Lock1 implements Tile2 {
   drop() { }
   rest() { }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 class Key2 implements Tile2 {
@@ -325,6 +334,7 @@ class Key2 implements Tile2 {
   drop() { }
   rest() { }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 class Lock2 implements Tile2 {
@@ -353,6 +363,7 @@ class Lock2 implements Tile2 {
   drop() { }
   rest() { }
   isFalling() { return this.isFallingStone() || this.isFallingBox() }
+  canFall() { return this.isStony() || this.isBoxy() }
 }
 
 enum RawInput {
@@ -493,7 +504,7 @@ function handleInputs() {
 }
 
 function updateTile(x: number, y: number) {
-  if ((map[y][x].isStony() || map[y][x].isBoxy()) && map[y + 1][x].isAir()) {
+  if (map[y][x].canFall() && map[y + 1][x].isAir()) {
     map[y][x].drop();
     map[y + 1][x] = map[y][x];
     map[y][x] = new Air();
