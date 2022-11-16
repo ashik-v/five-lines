@@ -14,6 +14,29 @@ enum RawTile {
   KEY2, LOCK2
 }
 
+interface FallingState {
+  isFalling(): boolean,
+  moveHorizontal(dx: number): void
+}
+
+class Falling implements FallingState {
+  isFalling() { return true }
+  moveHorizontal(dx: number) {
+
+  }
+}
+
+class Resting implements FallingState {
+  isFalling() { return false }
+  moveHorizontal(dx: number) {
+    if (map[playery][playerx + dx + dx].isAir()
+        && !map[playery + 1][playerx + dx].isAir()) {
+      map[playery][playerx + dx + dx] = map[playery][playerx + dx];
+      moveToTile(playerx + dx, playery);
+    }
+  }
+}
+
 interface Tile2 {
   isAir(): boolean,
   isLock1(): boolean,
@@ -107,29 +130,6 @@ class Box implements Tile2 {
       map[y][x] = new Air();
     } else if (this.falling.isFalling()) {
       this.falling = new Resting();
-    }
-  }
-}
-
-interface FallingState {
-  isFalling(): boolean,
-  moveHorizontal(dx: number): void
-}
-
-class Falling implements FallingState {
-  isFalling() { return true }
-  moveHorizontal(dx: number) {
-
-  }
-}
-
-class Resting implements FallingState {
-  isFalling() { return false }
-  moveHorizontal(dx: number) {
-    if (map[playery][playerx + dx + dx].isAir()
-        && !map[playery + 1][playerx + dx].isAir()) {
-      map[playery][playerx + dx + dx] = map[playery][playerx + dx];
-      moveToTile(playerx + dx, playery);
     }
   }
 }
