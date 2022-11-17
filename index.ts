@@ -22,7 +22,7 @@ class FallStrategy {
     return this.falling;
   }
 
-  update(tile: Tile2, x: number, y: number) {
+  update(tile: Tile, x: number, y: number) {
     if (map[y + 1][x].isAir()) {
       this.falling = new Falling();
       map[y + 1][x] = tile;
@@ -56,7 +56,7 @@ class Resting implements FallingState {
   }
 }
 
-interface Tile2 {
+interface Tile {
   isAir(): boolean,
   isLock1(): boolean,
   isLock2(): boolean,
@@ -66,7 +66,7 @@ interface Tile2 {
   update(x: number, y: number): void
 }
 
-class Air implements Tile2 {
+class Air implements Tile {
   isAir() { return true }
   isLock1() { return false }
   isLock2() { return false }
@@ -80,7 +80,7 @@ class Air implements Tile2 {
   update(x: number, y: number) { }
 }
 
-class Player implements Tile2 {
+class Player implements Tile {
   isAir() { return false }
   isLock1() { return false }
   isLock2() { return false }
@@ -92,7 +92,7 @@ class Player implements Tile2 {
   update(x: number, y: number) { }
 }
 
-class Flux implements Tile2 {
+class Flux implements Tile {
   isAir() { return false }
   isLock1() { return false }
   isLock2() { return false }
@@ -109,7 +109,7 @@ class Flux implements Tile2 {
   update(x: number, y: number) { }
 }
 
-class Unbreakable implements Tile2 {
+class Unbreakable implements Tile {
   isAir() { return false }
   isLock1() { return false }
   isLock2() { return false }
@@ -124,7 +124,7 @@ class Unbreakable implements Tile2 {
   update(x: number, y: number) { }
 }
 
-class Box implements Tile2 {
+class Box implements Tile {
   falling: FallingState
   private fallStrategy: FallStrategy
 
@@ -151,7 +151,7 @@ class Box implements Tile2 {
   }
 }
 
-class Stone implements Tile2 {
+class Stone implements Tile {
   private fallStrategy: FallStrategy
   constructor(falling: FallingState) {
     this.fallStrategy = new FallStrategy(falling);
@@ -175,7 +175,7 @@ class Stone implements Tile2 {
   }
 }
 
-class Key1 implements Tile2 {
+class Key1 implements Tile {
   isAir() { return false }
   isLock1() { return false }
   isLock2() { return false }
@@ -194,7 +194,7 @@ class Key1 implements Tile2 {
   update(x: number, y: number) { }
 }
 
-class Lock1 implements Tile2 {
+class Lock1 implements Tile {
   isAir() { return false }
   isLock1() { return true }
   isLock2() { return false }
@@ -209,7 +209,7 @@ class Lock1 implements Tile2 {
   update(x: number, y: number) { }
 }
 
-class Key2 implements Tile2 {
+class Key2 implements Tile {
   isAir() { return false }
   isLock1() { return false }
   isLock2() { return false }
@@ -228,7 +228,7 @@ class Key2 implements Tile2 {
   update(x: number, y: number) { }
 }
 
-class Lock2 implements Tile2 {
+class Lock2 implements Tile {
   isAir() { return false }
   isLock1() { return false }
   isLock2() { return true }
@@ -306,7 +306,7 @@ let rawMap: RawTile[][] = [
   [2, 2, 2, 2, 2, 2, 2, 2],
 ];
 
-let map: Tile2[][];
+let map: Tile[][];
 
 function assertExhausted(x: never) : never {
   throw new Error("Unexpected object: " + x);
