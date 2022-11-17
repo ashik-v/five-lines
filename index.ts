@@ -178,6 +178,36 @@ class Stone implements Tile {
   }
 }
 
+class Lock1 implements Tile {
+  isAir() { return false }
+  isLock1() { return true }
+  isLock2() { return false }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#ffcc00";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
+  moveHorizontal(dx: number) {
+  }
+  moveVertical(dy: number) {
+  }
+  update(x: number, y: number) { }
+}
+
+class Lock2 implements Tile {
+  isAir() { return false }
+  isLock1() { return false }
+  isLock2() { return true }
+  draw(g: CanvasRenderingContext2D, x: number, y: number) {
+    g.fillStyle = "#00ccff";
+    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+  }
+  moveHorizontal(dx: number) {
+  }
+  moveVertical(dy: number) {
+  }
+  update(x: number, y: number) { }
+}
+
 class Key1 implements Tile {
   isAir() { return false }
   isLock1() { return false }
@@ -197,21 +227,6 @@ class Key1 implements Tile {
   update(x: number, y: number) { }
 }
 
-class Lock1 implements Tile {
-  isAir() { return false }
-  isLock1() { return true }
-  isLock2() { return false }
-  draw(g: CanvasRenderingContext2D, x: number, y: number) {
-    g.fillStyle = "#ffcc00";
-    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  moveHorizontal(dx: number) {
-  }
-  moveVertical(dy: number) {
-  }
-  update(x: number, y: number) { }
-}
-
 class Key2 implements Tile {
   isAir() { return false }
   isLock1() { return false }
@@ -227,21 +242,6 @@ class Key2 implements Tile {
   moveVertical(dy: number) {
     removeLock2();
     moveToTile(playerx, playery + dy);
-  }
-  update(x: number, y: number) { }
-}
-
-class Lock2 implements Tile {
-  isAir() { return false }
-  isLock1() { return false }
-  isLock2() { return true }
-  draw(g: CanvasRenderingContext2D, x: number, y: number) {
-    g.fillStyle = "#00ccff";
-    g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
-  }
-  moveHorizontal(dx: number) {
-  }
-  moveVertical(dy: number) {
   }
   update(x: number, y: number) { }
 }
