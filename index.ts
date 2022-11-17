@@ -345,6 +345,10 @@ function transformMap() {
 
 let inputs: Input[] = [];
 
+class RemoveStrategy {
+  
+}
+
 function check(tile: Tile) {
   return tile.isLock1();
 }
