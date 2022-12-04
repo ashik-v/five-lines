@@ -248,7 +248,6 @@ class KeyConfiguration {
       private _1: boolean,
       private removeStrategy: RemoveStrategy
   ) { }
-  private getColor() { return this.color }
   setColor(g: CanvasRenderingContext2D) { g.fillStyle = this.color }
   is1() { return this._1 }
   removeLock() { remove(this.removeStrategy) }
