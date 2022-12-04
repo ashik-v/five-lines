@@ -248,7 +248,7 @@ class KeyConfiguration {
       private _1: boolean,
       private removeStrategy: RemoveStrategy
   ) { }
-  getColor() { return this.color }
+  private getColor() { return this.color }
   is1() { return this._1 }
   removeLock() { remove(this.removeStrategy) }
 }
