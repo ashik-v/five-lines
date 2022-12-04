@@ -206,11 +206,11 @@ class Keys implements Tile {
     g.fillRect(x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE);
   }
   moveHorizontal(dx: number) {
-    remove(this.keyConf.getRemoveStrategy());
+    this.keyConf.removeLock();
     moveToTile(playerx + dx, playery);
   }
   moveVertical(dy: number) {
-    remove(this.keyConf.getRemoveStrategy());
+    this.keyConf.removeLock();
     moveToTile(playerx, playery + dy);
   }
   update(x: number, y: number) { }
@@ -250,7 +250,7 @@ class KeyConfiguration {
   ) { }
   getColor() { return this.color }
   is1() { return this._1 }
-  private getRemoveStrategy() { return this.removeStrategy }
+  removeLock() { remove(this.removeStrategy) }
 }
 
 const YELLOW_KEY = new KeyConfiguration("#ffcc00", true, new RemoveLock1())
