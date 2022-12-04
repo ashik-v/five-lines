@@ -250,7 +250,7 @@ class KeyConfiguration {
   ) { }
   getColor() { return this.color }
   is1() { return this._1 }
-  getRemoveStrategy() { return this.removeStrategy }
+  private getRemoveStrategy() { return this.removeStrategy }
 }
 
 const YELLOW_KEY = new KeyConfiguration("#ffcc00", true, new RemoveLock1())
